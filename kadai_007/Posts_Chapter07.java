@@ -29,7 +29,7 @@ public class Posts_Chapter07 {
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost/challenge_java",
 					"root",
-					""
+					"nyanko48"
 					);
 			
 			System.out.println("データベース接続成功");
@@ -39,18 +39,19 @@ public class Posts_Chapter07 {
 			statement = con.prepareStatement(sql);
 			//String sql = "SELECT * FROM posts WHERE user_id = 1002;";
 			
-			//int rowCnt = 0;
+			int rowCnt = 0;
 			for(int i = 0; i < posts.length; i++) {
 				statement.setString(1, posts[i][0]);
 				statement.setString(2, posts[i][1]);
 				statement.setString(3, posts[i][2]);
-				statement.setString(4, posts[i][3]);
+				statement.setString(4, posts[i][3]);	
 				
-				//rowCnt = statement.executeUpdate();
-			}
+				rowCnt = statement.executeUpdate();
+				
+			}	
 				System.out.println("レコード追加を実行します");
 				System.out.println(posts.length + "件のレコードが追加されました");
-			
+	
 			String sql1 = "SELECT posted_at,post_content,likes FROM posts WHERE user_id = 1002;";
 			statement1 = con.createStatement();
 			
